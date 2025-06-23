@@ -1,6 +1,9 @@
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 public class Server {
 
@@ -14,6 +17,10 @@ public class Server {
                 System.out.println("Waiting for client connection on port " + port);
                 try {
                     Socket acceptedConnection = socket.accept();
+                     System.out.println("Connected to "+acceptedConnection.getRemoteSocketAddress());
+            PrintWriter toClient = new PrintWriter(acceptedConnection.getOutputStream(), true);
+            BufferedReader fromClient = new BufferedReader(new InputStreamReader(acceptedConnection.getInputStream()));
+            toClient.println("Hello World from the server");
                     // Handle client connection
                 } catch (java.net.SocketTimeoutException e) {
                     System.out.println("Connection timed out after 10 seconds.");
