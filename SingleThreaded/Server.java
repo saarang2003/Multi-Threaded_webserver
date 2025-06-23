@@ -1,5 +1,6 @@
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,7 +8,7 @@ import java.io.PrintWriter;
 
 public class Server {
 
-    public void run() {
+    public void run() throws IOException, UnknownHostException {
         int port = 8010;
         try {
             ServerSocket socket = new ServerSocket(port);
